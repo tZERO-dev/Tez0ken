@@ -1,0 +1,10 @@
+# The Compliance Contract
+The compliance contract uses compliance rules to regulate the transfer of tokens. The contract maintains and manages the
+collection of rules which enforce compliant transfers between account types (custodian, broker, custodial-account, or investor).
+
+![Compliance Design Diagram][design]
+
+_See [compliance.mligo](../../src/contracts/compliance.mligo) for a reference implementation_
+
+
+[design]: http://www.plantuml.com/plantuml/png/ZPD1Qnin48NFtbyna4CTt4CARKn22A7R17egsANNCfR6Nc6jj8ncOzpW_rvPsM2liZ7MyRtdUT-iv8SWoDBMjlW45qC7vhAr58RD8goDQv2nXb2XzXlZLh146-Z8QL2jSKNmKW0iF6lYqblFS75rLJvEVqHrwPtqjTtHxuqJuYMgrmd8x3VvW4MiMB5ldUuSDLtUqFN9mhdvH_3bMw-gDAmiwR92HYN4gV4qdR8OmiTa5M7i_vxpbTEdcyVh0V9DPOJEuHu40q0HDejMwEaqjQyRxyW9l9m9aRJXBNEIdFLhhAwC9g2waItK99NN8NzmPvsYEBo6PxH6ez3VrvNkxc0y-vmmB-7-FYq6C87WMuxfMq2jcKBeP4r1Z4CntkNUVd9BKOrsiHkiZE76kq0Vj0gZ2qjYkCqeatiWKigtJfAOyNHER7_x-vJnogn1f_QbCrA2RcKfLOxI8-mdO5psi4QZ2VYD8pvicpJnQtAPnhGoGNYRowsbSD30nb1HG7ScC4l--Dr7kZpAp4bcRzF7tQ3CxyQajcFhJpVtPmXjMdBS_xP3sL_Fn6pqMTdVtQMzpuvs-uju8AVRslu7

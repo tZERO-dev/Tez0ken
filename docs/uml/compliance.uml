@@ -1,0 +1,64 @@
+@startuml
+' ##################### Styles #####################
+skinparam shadowing false
+skinparam package {
+  borderColor #00CE7D
+  fontColor #00CE7D
+}
+skinparam interface {
+  arrowColor #00CE7D
+  backgroundColor #c7f9e6
+  borderColor #00CE7D
+  fontSize 15
+}
+skinparam CircledCharacter {
+  fontColor #00CE7D
+}
+skinparam class {
+  arrowColor #00CE7D
+  headerBackgroundColor #C7F9E6
+  backgroundColor white
+  borderColor #00CE7D
+  fontSize 15
+  fontColor #00CE7D
+  attributeFontColor #00CE7D
+}
+skinparam component {
+  backgroundColor white
+  borderColor white
+  arrowColor #00CE7D
+  fontColor #00CE7D
+  fontSize 14
+}
+hide empty methods
+' ##################################################
+
+interface validate_param << (R,white) >> {
+    + source : address
+    + destination : address
+    + value : nat
+}
+
+interface validate_response << (R,white) >> {
+    transfer : validate_param
+    source : account
+    destination : account
+}
+
+package Compliance <<Rectangle>> {
+	class Compliance << (C,white) >> {
+		+ owner : address
+		+ token : address
+		+ registry : address
+		+ rules : address list
+
+        + Rules (validate_response)
+        + SetRegistry (address)
+        + SetRules (rules)
+        + ValidateIssuance (validate_param)
+        + ValidateOverride (validate_param)
+        + ValidateTransfer (validate_param)
+	}
+}
+
+@enduml
