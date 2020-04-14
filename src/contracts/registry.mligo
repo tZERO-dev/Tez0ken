@@ -84,7 +84,7 @@ let child_for (p, s : address *  storage) : account =
 let entry_Accounts (p, s : validate_request * storage) : return =
   let src = find (p.request.source, s) in
   let dst = find (p.request.destination, s) in
-  let callback : validate_response = {transfer = p.request ; source = src ; destination = dst} in
+  let callback : validate_response = {request = p.request ; source = src ; destination = dst} in
   [Tezos.transaction callback 0mutez p.callback], s
 
 let entry_Append (p, s : new_param * storage) : return =

@@ -7,7 +7,7 @@ type validate_param = {
 }
 
 type validate_response = {
-  transfer : validate_param;
+  request : validate_param;
   source : account;
   destination : account;
 }
