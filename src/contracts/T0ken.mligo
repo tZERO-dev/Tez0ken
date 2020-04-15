@@ -91,8 +91,9 @@ let require_balance (src, value, balances : address * nat * balances) : nat =
 
 let transfer_balances (src, dst, value, balances : address * address * nat * balances) : balances =
   let src_balance = abs (require_balance (src, value, balances) - value) in
+  let balances = Big_map.update src (Some src_balance) balances in
   let dst_balance = balance_for (dst, balances) + value in
-  Big_map.update dst (Some dst_balance) (Big_map.update src (Some src_balance) balances)
+  Big_map.update dst (Some dst_balance) balances
 
 (* ------------------------------ Entrypoints ------------------------------- *)
 let entry_Transfer (p, s : transfer_param * storage) : return =
