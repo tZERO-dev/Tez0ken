@@ -27,9 +27,8 @@ let accounts_op (registry_address, param : address * validate_param) : operation
       | Some contract -> contract
       | None -> (failwith "Invalid registry" : validate_request contract) in
 
-  let callback : validate_response contract = Tezos.self("%rules") in
-  let get_accounts : validate_request = {request = param ; callback = callback} in
-  Tezos.transaction get_accounts 0tez registry
+  let callback = (Tezos.self "%rules" : validate_response contract) in
+  Tezos.transaction {request = param ; callback = callback} 0tez registry
 
 let rule_op (rule_address, param : address * validate_response) : operation =
   let rule : validate_response contract =
@@ -39,13 +38,13 @@ let rule_op (rule_address, param : address * validate_response) : operation =
 
   Tezos.transaction param 0tez rule
 
-let whitelist_op (registry_address, a : address * address) : operation =
+let whitelist_op (registry_address, param : address * address) : operation =
   let registry : address contract =
     match (Tezos.get_entrypoint_opt "%exists" registry_address : address contract option) with
       | Some contract -> contract
       | None -> (failwith "Invalid registry" : address contract) in
 
-  Tezos.transaction a 0tez registry
+  Tezos.transaction param 0tez registry
 
 (* ------------------------------ Entrypoints ------------------------------- *)
 let entry_Rules (p, s : validate_response * storage) : return =

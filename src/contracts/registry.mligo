@@ -92,14 +92,21 @@ let entry_Append (p, s : new_param * storage) : return =
   if parent.role = Map.find p.role permissions <> true then
     (failwith "Invalid role" : return)
   else
-    let new_account : account = {
+    let a : account = {
       parent = Tezos.sender ;
       role = p.role ;
       frozen = p.frozen ;
       accreditation = p.accreditation ;
-      domicile = p.domicile
+      domicile = p.domicile ;
     } in
-    noops, {s with accounts = Big_map.add p.address new_account s.accounts}
+    match Big_map.find_opt p.address s.accounts with
+      | Some existing ->
+        if existing.parent <> Tezos.sender then
+          (failwith "Already exists" : return)
+        else
+          noops, {s with accounts = Big_map.update p.address (Some a) s.accounts}
+      | None ->
+		noops, {s with accounts = Big_map.add p.address a s.accounts}
 
 let entry_Exists (p, s : address * storage) : return =
   let a = find (p, s) in
