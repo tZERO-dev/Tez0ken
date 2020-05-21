@@ -2,64 +2,96 @@
 ' ##################### Styles #####################
 skinparam shadowing false
 skinparam package {
-  borderColor #00CE7D
-  fontColor #00CE7D
+	borderColor #00CE7D
+	fontColor #00CE7D
 }
 skinparam interface {
-  arrowColor #00CE7D
-  backgroundColor #C7F9E6
-  borderColor #00CE7D
-  fontSize 15
+	arrowColor #00CE7D
+	backgroundColor #C7F9E6
+	borderColor #00CE7D
+	fontSize 15
 }
 skinparam CircledCharacter {
-  fontColor #00CE7D
+	fontColor #00CE7D
 }
 skinparam class {
-  arrowColor #00CE7D
-  headerBackgroundColor #C7F9E6
-  backgroundColor white
-  borderColor #00CE7D
-  fontSize 15
-  fontColor #00CE7D
-  attributeFontColor #00CE7D
+	arrowColor #00CE7D
+	headerBackgroundColor #C7F9E6
+	backgroundColor white
+	borderColor #00CE7D
+	fontSize 15
+	fontColor #00CE7D
+	attributeFontColor #00CE7D
 }
 skinparam component {
-  backgroundColor white
-  borderColor white
-  arrowColor #00CE7D
-  fontColor #00CE7D
-  fontSize 14
+	backgroundColor white
+	borderColor white
+	arrowColor #00CE7D
+	fontColor #00CE7D
+	fontSize 14
 }
 hide empty methods
 ' ##################################################
 
-interface transfer_param << (R,white) >> {
-    + destination : address
-    + value : nat
+interface "FA1.2" << (I,white) >> {
+	+ Transfer (transfer_param)
+	+ Approve (approve_param)
+	+ GetAllownace (allowance_param)
+	+ GetBalance (balance_param)
+	+ GetTotalSupply (unit * nat contract)
 }
 
-interface override_param << (R,white) >> {
-    + source : address
-    + destination : address
-    + value : nat
-}
+package T0ken <<Rectangle>> {
+	interface transfer_param << (R,white) >> {
+		+ from : address
+		+ to : address
+		+ value : nat
+	}
 
-package Token <<Rectangle>> {
+	interface approve_param << (R,white) >> {
+		spender : address
+		value : nat
+	}
+
+	interface allowance_param << (R,white) >> {
+		+ owner : address
+		+ spender : address
+		+ callback : nat contract
+	}
+
+	interface balance_param << (R,white) >> {
+		+ owner : address
+		+ callback : nat contract
+	}
+
 	class T0ken <<C,white>> {
-        + symbol : string
-        + description : string
-        + owner : address
-        + issuer : address
-        + issuance_finished : bool
-        + total_supply : nat
-        + balances : balances
-        + compliance : address option
+		+ admins : address set
+		+ issuer : address
+		+ symbol : string
+		+ description : string
+		+ total_supply : nat
+		+ issuance_finished : bool
+		+ allowances : (address * address, nat) big_map
+		+ balances : (address, nat) big_map
+		+ registry : address
+		+ rules : address
+		+ paused : bool
 
-        + FinishIssuance ()
-        + IssueTokens ()
-        + SetCompliance (address option)
-        + Transfer (transfer_param)
-        + TransferOverride (override_param)
+		+ FinishIssuance ()
+		+ IssueTokens (nat)
+		+ SetAdmin (address)
+		+ SetIssuer (address)
+		+ SetPaused (bool)
+		+ SetRegistry (address)
+		+ SetRules (address)
+		+ TransferOverride (transfer_param)
 	}
 }
+
+FA1.2 <|-- T0ken
+
+transfer_param o-- T0ken
+approve_param o-- T0ken
+allowance_param o-- T0ken
+balance_param o-- T0ken
 @enduml

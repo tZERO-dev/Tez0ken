@@ -1,18 +1,18 @@
 #include "../registry/accounts.mligo"
 
-type validate_param = {
-  source : address;
-  destination : address;
-  value : nat;
-}
-
 type validate_response = {
-  request : validate_param;
-  source : account;
-  destination : account;
+  accounts : account * account;
+  addresses : address * address;
+  balances : nat * nat;
+  values : nat * nat;
+  issuance : bool;
+  sender : address;
 }
 
-type validate_request = {
-  request : validate_param;
-  callback : validate_response contract;
+type validate_param = {
+  addresses : address * address;
+  balances : nat * nat;
+  values : nat * nat;
+  issuance : bool;
+  yield : validate_response contract;
 }

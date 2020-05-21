@@ -33,32 +33,27 @@ skinparam component {
 hide empty methods
 ' ##################################################
 
-interface validate_param << (R,white) >> {
-    + source : address
-    + destination : address
-    + value : nat
-}
-
-interface validate_response << (R,white) >> {
-    transfer : validate_param
-    source : account
-    destination : account
-}
-
 package Compliance <<Rectangle>> {
-	class Compliance << (C,white) >> {
-		+ owner : address
-		+ token : address
-		+ registry : address
-		+ rules : address list
-
-        + Rules (validate_response)
-        + SetRegistry (address)
-        + SetRules (rules)
-        + ValidateIssuance (validate_param)
-        + ValidateOverride (validate_param)
-        + ValidateTransfer (validate_param)
+	interface validate_response << (R,white) >> {
+		+ accounts : account * account;
+		+ addresses : address * address;
+		+ balances : nat * nat;
+		+ values : nat * nat;
+		+ issuance : bool;
+		+ sender : address;
 	}
 }
 
+package Rules <<Rectangle>> {
+	class Rules << (C,white) >> {
+		+ admin : address
+		+ registry : address
+		+ rules : address list
+
+        + SetRules (address list)
+        + ValidateRules (validate_response)
+	}
+}
+
+Compliance o-- Rules
 @enduml

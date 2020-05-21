@@ -19,6 +19,7 @@ For a token to be tradable, it first has to be defined, created and then be cons
 rules to ensure compliance with the trading laws for the parties involved (investors, broker-dealers, and custodians).
 
 The tokens are created and their trades validated within the following interrelated set of components:
+
  - [Token](docs/design/token.md)
  - [Registry](docs/design/registry.md)
  - [Compliance](docs/design/compliance.md)
@@ -60,6 +61,8 @@ To build, simply run:
 
 This will create the `build/` folder with all Michelson/`.tz` files.
 
+_**note**: please see [t0ken.mligo](src/contracts/t0ken.mligo) on how to correctly implement [FA1.2][fa1.2] errors_
+
 ## License
 This project is licensed under the [Apache 2.0][apache 2.0] license.
 
@@ -73,4 +76,4 @@ This project is licensed under the [Apache 2.0][apache 2.0] license.
 [reg-a]: //www.sec.gov/smallbusiness/exemptofferings/rega
 [reg-d]: //www.sec.gov/fast-answers/answers-regdhtm.html
 [apache 2.0]: //www.apache.org/licenses/LICENSE-2.0.html
-[uml-overall]: http://www.plantuml.com/plantuml/png/hP91xvem6CRl_HHlyF0_OLoopPaiYnCqsLMNx60uLFgYXDAQjiounUy-MgaWWyC_aOE1vtruVW_sNMf3bQbAJjvWCdJ1pbmvwk4XqKKkpbJH4hwdHggLL0nL9BbKC9dDelKy_iz2q-AeP2NOtVRhb1licpPIcD4KRt35u20vwqprYJ9voSKHCifrDrX8Xl2N01nw3IRnOlDb7Td9G7s0pBBoFmWVFZLFpuvR1yAeeGUgHq3HVBDOVtu9AAj_HYZfF5lWQoYfBCzIe323f8izkXx7QrGfUHb2ZzVvI6vs2Tzz4N9_3RPupBLHL_8uXIrG3O7N0_SLU_-Os9fscI28Acqaowa8McsbP84gHifHTUGVuZVMvbgw4Py4NyCG7XdFSZVcUUAJ7lKhZfguDGtSVTDtEfqcJU_Ot-oI6hzthWJ2y9iN-rBSasoMvqNruVAwRuftQEJ-h5PjyArWuMzDNF_hEs7Eq1CzywSiK91sUVTEi6cjrxxQ69SeM5NoVm00
+[uml-overall]: http://www.plantuml.com/plantuml/png/hL91Jy8m53xJN_4o3fv6C56Hn1XaWyGhc7WWEvIrWuMkZxIT10t_tRAnEMRXeZriw_UzztrVkpVIXYgJPuBSGDUrO6xsWcitIVGcbLkgQ0OliK4rHiMu2b2WWcw_7qm6uQyI6czM2dF9ohBtTMfuksYAqZXLcWL5C5YYO0rMhod3NIfNa52Xcy8I6OSlqbcs0dJ3uVHn4bZ24RwJ78tIJmwtz-Ncd3yq31WrT4crsoGOJ8UJXx-R9FRXTeW7oP3_WqECsHObbyRbiYl-LkNHXAXIk7EuNWnoPrtTCtTz4LAsmOolKctKdjGNFmEgmQjmxtY0HRMBRCJZv80NvDeWIwdqQcYiSCDLoAdWwWTzbH_SbbhaG2ePUF9zg1NEuQRAELCfLT43UyV2ziSsSowu9XBPwRC8tUlreZ9xU7hF8njYqUwBmFUVeUIliU55jh2gOhtP_9BK8xOezb7xz0Ngq6kG8ovPdebl
