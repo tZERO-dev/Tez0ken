@@ -1,0 +1,35 @@
+# tzerotech/better-call-dev
+#
+# Better Call Dev Docker image
+#
+#   Updates the config `sandbox` value "http://localhost:8732" => "http://flextesa:20000"
+#     also adds the `tzStatsUrl` URL value of `http://tzindex:8000`
+#
+#
+# ***IMPORTANT***
+# 
+#   This image was created before version 2: [bcd](https://github.com/baking-bad/bcd), was released.
+#   Version 1: [better-call-dev](https://github.com/baking-bad/better-call-dev), is no longer maintained.
+#
+#   The dependency `conseiljs:0.3.1` contains a dependency of a GitHub module: `git+https://github.com/yourcodesucks/base-n.git#9d983f475c7396fbdc2fcbbc35b4821f0deeaa25`
+#   This repo has been deleted, preveting this image from currently be built.
+#
+
+FROM node:10 AS node_build
+RUN git clone https://github.com/baking-bad/better-call-dev.git
+WORKDIR /better-call-dev
+RUN apt update && apt install -y libusb-1.0-0
+RUN printf '{"tzero":{"value":"tzero","text":"tZERO","blockUrl":"http://127.0.0.1:20000/chains/main/blocks","tzStatsUrl":"http://127.0.0.1:8000"}}' > src/tezosNets.json
+RUN npm i
+RUN npm run build
+
+FROM golang:1.14-buster as go_build
+RUN printf 'package main \nimport "net/http" \nfunc main() { \n   http.ListenAndServe(":8081", http.FileServer(http.Dir("."))) \n}' > /go/src/serve.go
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build /go/src/serve.go
+
+FROM scratch
+EXPOSE 8081/tcp
+COPY --from=node_build /better-call-dev/dist /www
+COPY --from=go_build /go/serve /bin/serve
+WORKDIR /www
+ENTRYPOINT ["/bin/serve"]

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+#
+
+/usr/bin/tezos-client --port 20000 --protocol PsCARTHAGazKbHtnKfLzQg3kms52kSRpgnDY982a9oYsSXRLQEb "$@"

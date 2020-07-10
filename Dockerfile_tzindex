@@ -1,0 +1,19 @@
+# tzerotech/tzindex:6.0.3
+#
+# tzIndex Docker image
+#
+
+ARG TZ_VERSION=6.0.3
+
+FROM golang:1.14-buster as build
+ARG TZ_VERSION
+RUN git clone https://github.com/blockwatch-cc/tzindex.git --branch v$TZ_VERSION --single-branch
+RUN cd tzindex && GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install .
+RUN sed -i 's|127.0.0.1|0.0.0.0|g' /go/tzindex/docker/config.json
+
+FROM scratch
+EXPOSE 8000/tcp
+COPY --from=build /go/bin/tzindex /tzindex
+COPY --from=build /go/tzindex/docker/config.json /config.json
+ENTRYPOINT ["/tzindex"]
+CMD ["run", "--enable-cors", "--rpcurl", "http://tzero_flextesa:20000"]
