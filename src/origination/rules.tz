@@ -1,0 +1,5 @@
+{
+  admin = ("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address);
+  registry = ("KT1LSMRcE2sLqg6H1mmFHG7RVwYNEQnkAtc1" : address);
+  rules = ([] : rules);
+}

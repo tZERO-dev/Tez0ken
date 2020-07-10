@@ -1,0 +1,9 @@
+Big_map.literal [
+  (("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address), {parent=("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address); role=1n; frozen=false; accreditation=(None : nat option) ; domicile="US"});
+  (("tz1R3nRTHbRotdSt5TE63Xc897zjjSmxUKPU" : address), {parent=("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address); role=2n; frozen=false; accreditation=(None : nat option) ; domicile="US"});
+  (("tz1cc1cG3c6cpsScweeTP1jod6Ueeoash13E" : address), {parent=("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address); role=3n; frozen=false; accreditation=(None : nat option) ; domicile="US"});
+  (("tz1aa1aAP6tDrq8Bm4TJBxcNBsD7jXg7g3Gr" : address), {parent=("tz1cc1cG3c6cpsScweeTP1jod6Ueeoash13E" : address); role=4n; frozen=false; accreditation=(None : nat option) ; domicile="US"});
+  (("tz1bb1bSF9Y1WLjV5BK5HyXmMFjCGXvqDFdY" : address), {parent=("tz1cc1cG3c6cpsScweeTP1jod6Ueeoash13E" : address); role=5n; frozen=false; accreditation=(None : nat option) ; domicile="US"});
+  (("tz1ii1iPX8HWbgms6vPCFSbgYAKmJcWZu3F8" : address), {parent=("tz1bb1bSF9Y1WLjV5BK5HyXmMFjCGXvqDFdY" : address); role=6n; frozen=false; accreditation=(Some (1901725185n)); domicile="US"});
+  (("tz1ii2ivhPA5TXdoQr1bU3kscexbm97a6qDy" : address), {parent=("tz1bb1bSF9Y1WLjV5BK5HyXmMFjCGXvqDFdY" : address); role=6n; frozen=false; accreditation=(Some (1901725185n)); domicile="US"});
+]

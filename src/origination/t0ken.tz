@@ -1,0 +1,17 @@
+{
+  admins = Set.literal [("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address)];
+  issuer = ("tz1R3nRTHbRotdSt5TE63Xc897zjjSmxUKPU" : address);
+  symbol = "TZROP";
+  description = "tZERO Preferred";
+  total_supply = 26_228_711n;
+  issuance_finished = false;
+  allowances = (Big_map.empty : (address * address, nat) big_map);
+  balances = Big_map.literal [
+    (("tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6" : address), 26_228_696n);
+    (("tz1ii1iPX8HWbgms6vPCFSbgYAKmJcWZu3F8" : address), 10n);
+    (("tz1ii2ivhPA5TXdoQr1bU3kscexbm97a6qDy" : address), 5n);
+  ];
+  registry = ("KT1LSMRcE2sLqg6H1mmFHG7RVwYNEQnkAtc1" : address);
+  rules = ("KT1LZmAAPb1nr5DCYAp7so6bcJm4xW6pb6XZ" : address);
+  paused = false;
+}

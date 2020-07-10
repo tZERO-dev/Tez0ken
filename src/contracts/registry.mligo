@@ -31,29 +31,11 @@ type account_param = {
   accreditation : nat option;
 }
 
-type freeze_param = {
-  address : address;
-  frozen : bool;
-}
-
-type accreditation_param = {
-  address : address;
-  accreditation : nat option
-}
-
-type domicile_param = {
-  address : address;
-  domicile : string;
-}
-
 type access_parameter =
   | Append of account_param
   | ValidateAccount of address
   | ValidateAccounts of validate_param
   | Remove of address
-  | SetAccreditation of accreditation_param
-  | SetDomicile of domicile_param
-  | SetFrozen of freeze_param
 
 let find (a, s : address * accounts) : account =
   match Big_map.find_opt a s with
@@ -117,12 +99,3 @@ let access (action, s : access_parameter * accounts) : return =
           (failwith "InvalidParent" : return)
         else
           ([] : operation list), Big_map.remove p s
-    | SetAccreditation p ->
-        let child = child_for (p.address, s) in
-        ([] : operation list), Big_map.update p.address (Some {child with accreditation = p.accreditation}) s
-    | SetDomicile p ->
-        let child = child_for (p.address, s) in
-        ([] : operation list), Big_map.update p.address (Some {child with domicile = p.domicile}) s
-    | SetFrozen p ->
-        let child = child_for (p.address, s) in
-        ([] : operation list), Big_map.update p.address (Some {child with frozen = p.frozen}) s

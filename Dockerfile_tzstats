@@ -1,0 +1,25 @@
+# tzerotech/tzstats
+#
+# tzStats Docker image
+#
+
+FROM node:13-buster as node_build
+RUN git clone https://github.com/blockwatch-cc/tzstats.git
+RUN cd tzstats && npm install && npm install sass  # Have to manuall install `sass`, as it's not included as a dependancy
+RUN cd tzstats && yarn build
+# Update  <{TZSTATS_API_URL]>  to  http://tzindex:8000
+RUN file=$(find /tzstats/build/static/js -name "main.*.chunk.js") && sed -i 's|<\[TZSTATS_API_URL\]>|http://127.0.0.1:8000|g' $file
+RUN file=$(find /tzstats/build/static/js -name "main.*.chunk.js.map") && sed -i 's|<\[TZSTATS_API_URL\]>|http://127.0.0.1:8000|g' $file
+
+
+FROM golang:1.14-buster as go_build
+RUN printf 'package main \nimport "net/http" \nfunc main() { \n   http.ListenAndServe(":8080", http.FileServer(http.Dir("."))) \n}' > /go/src/serve.go
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build /go/src/serve.go
+
+
+FROM scratch
+EXPOSE 8080/tcp
+COPY --from=go_build /go/serve /bin/serve
+COPY --from=node_build /tzstats/build /www
+WORKDIR /www
+ENTRYPOINT ["/bin/serve"]

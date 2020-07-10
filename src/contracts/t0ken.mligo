@@ -246,4 +246,4 @@ let access (action, s : access_parameter * storage) : return =
         else
           let p : transfer_param = Layout.convert_from_right_comb p in
           let _, _, balances = transfer_balances (p, s.total_supply, s.balances) in
-          [validate_account_op (s.registry, p.receiver)], s
+          [validate_account_op (s.registry, p.receiver)], {s with balances = balances}
