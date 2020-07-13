@@ -79,7 +79,11 @@ build_better_call_dev () {
 }
 
 flextesa () {
-	DOCKER_ID=$(docker run \
+	flags=""
+	if [ "$EASY_BAKE" = false ]; then
+		flags="		--interactive"
+	fi
+	DOCKER_ID=$(docker run $flags \
 		--detach \
 		--rm \
 		--name "$FLEXTESA_NAME" \

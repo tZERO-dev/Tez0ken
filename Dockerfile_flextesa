@@ -1,0 +1,94 @@
+# tzerotech/flextesa:carthage
+#
+# Flextesa auto-bake sandbox
+#
+
+FROM registry.gitlab.com/tezos/flextesa:ef679843-run as flextesa_build
+COPY dot_tezos-client /root/.tezos-client
+EXPOSE 20000
+
+ENTRYPOINT ["/usr/bin/flextesa", "mini-network", \
+"--size", "1", \
+"--set-history-mode", "N000:archive", \
+"--time-between-blocks", "5", \
+"--remove-default-bootstrap-accounts", \
+"--protocol-kind", "Carthage", \
+"--protocol-hash", "PsCARTHAGazKbHtnKfLzQg3kms52kSRpgnDY982a9oYsSXRLQEb", \
+"--tezos-baker", "tezos-baker-006-PsCARTHA", \
+"--tezos-endor", "tezos-endorser-006-PsCARTHA", \
+"--tezos-accus", "tezos-accuser-006-PsCARTHA", \
+"--add-bootstrap-account", "tzero,edpkuQLm1Vx8T3SR91ezgusyxeVzjpNPTSNZ6TnLnRrX7ubHyg1VML,tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6,unencrypted:edsk3KYnV8tpAn2TrYrHYTr7hzSNGYfXqSSFMS7kxw7HiXsKtKsqbN@2_000_000_000_000", \
+"--add-bootstrap-account", "admin,edpku3rHyyzNXJwa1fTY21YWANnqzSPKgABhJJsMrbkxrSxoVczmD7,tz1LHPijssU514sjv4sgX8ZrwufXcXZT2cJr,unencrypted:edsk3mMotPzERuynmi3rxkp7wtXsWyp3RP2uj6ztMPB21foun8gn1b@1_000_000", \
+"--add-bootstrap-account", "issuer,edpku6dSmBCT8PtB8TwPHw8GUjkMoWJoHmmBvD2oMHTt5HKnLdCngY,tz1R3nRTHbRotdSt5TE63Xc897zjjSmxUKPU,unencrypted:edsk3uYhhK5aFCxtu8pAVGVtF1PxFWwWYvRWWinRAJeb8YHA8cRe9u@1_000_000", \
+"--add-bootstrap-account", "custodian1,edpkuNyb2fBkJSjwHorMGRmAa8wziRskSCee8Bezkc7KCkUNzEVRrp,tz1cc1cG3c6cpsScweeTP1jod6Ueeoash13E,unencrypted:edsk4ZhYysC2G4cvZi1ea1sRRJNJSoxATfW6uwnaxTJuzwBBqqKVuL@5_000_000", \
+"--add-bootstrap-account", "custodian2,edpkuN7drYkKZXydookmqnMdgxfkfp7YNVg5xL8pjvpb3uY8S7mPcF,tz1cc2cC2k2bqDtmDHCLkGeyiG3ZVHsUwVh3,unencrypted:edsk3iviQjUxL1g7vwbfpM1eiUygDTXC1Aqmm4sg1hQhMrZqZ2ifVH@5_000_000", \
+"--add-bootstrap-account", "custodian3,edpkvUDPqVgnaePHSzuKsg29X1b4MXCgynH2MYLnPazr6gAFRKj8Ka,tz1cc3cBSeZW3fWFkw6NzfZSFvBnCaMyUL5V,unencrypted:edsk2gvnFhAg4bUVxk5RHY4esB3sg3wazWoYpAN61CACTPpLSXVor8@5_000_000", \
+"--add-bootstrap-account", "custodial1,edpktuFQoAw8dc3nsDLZPmf2STC9zrow7HmLfQrTJG9RWKw2gKLAYB,tz1aa1aAP6tDrq8Bm4TJBxcNBsD7jXg7g3Gr,unencrypted:edsk3Dx3Z1HNcg5DLCTp8tugzywTtNmjQvuYxgzuNi3DKYp7SLs819@5_000_000", \
+"--add-bootstrap-account", "custodial2,edpkuju4KveT5pqTTeRpSosBnLmCyVDUR6y5eHzvf5CBZL6T9iUgec,tz1aa2aCNLKB7BbLUzdMjyh5VSMTp3PvU4tE,unencrypted:edsk4RKkBKeCZKCMvejqx7mvwfiJ4Ah3u8PYiuAVPia7AQxXgWi1g7@5_000_000", \
+"--add-bootstrap-account", "custodial3,edpkvYR9eNKQRoF5EaHmJE5gh2e2kMzXA52nwKCfYXzYgpPDCG9hxC,tz1aa3aY8UztVGHvP9TSbif49gvV1WyY8wBN,unencrypted:edsk3H5jzDT3VoGpLUTjz66BBv3R2XSUpg7jVkaouoK1kGWEva7Xb4@5_000_000", \
+"--add-bootstrap-account", "custodial4,edpktpiHuxUNfNSm84HraL4nBbjyDqUGjbpuTC2PnAMYrauKeKyfdt,tz1aa4anrGm3sDrosjgZRFGamD8c8L5RVcmD,unencrypted:edsk3DP4Fbnyegwpg22Kb12yqaTkBLV3rwBNrkX8gUsDvtP9ddCgfw@5_000_000", \
+"--add-bootstrap-account", "broker1,edpkuWA6nEs4b9Xq8HMePPBry7uFeDsgNEcx2RidHUyK3nUxLdG8Mb,tz1bb1bSF9Y1WLjV5BK5HyXmMFjCGXvqDFdY,unencrypted:edsk2jQpVzv73AQ2utpbNFycc6HHczipezwNjDuX7FX9ngavNym9jE@5_000_000", \
+"--add-bootstrap-account", "broker2,edpkucT5vdgLmFQjX5cshCFqY6ojxfS97b9wW3kQ63C8nPBAjPZehG,tz1bb2bgAvRsw1CTTzCd3mWkmR95pUAb3W78,unencrypted:edsk35gDda91UfG28pBkwJbyQE2sm4Q8GqGX9cVva194wxt1SLCAmD@5_000_000", \
+"--add-bootstrap-account", "broker3,edpkuNUoC4Qzn6sgTb4MBfDmdPimQuzMYxLMFWNQLQzDaMRhoYA54h,tz1bb3bYCExW1TcjsLUGj8TjZr2bEq2BCo5C,unencrypted:edsk3pgCsVq9fW8EzpqA4QNsGibmtztV21bHFKEUAyuEUXLYB6az3T@5_000_000", \
+"--add-bootstrap-account", "broker4,edpkv5HCp3T5AkVQrKVPvFL8Q7C5mgoFWPCGgubBBX7xNr3FScnZY1,tz1bb4baxsTNc5DYnEe765NsicshWkkw3krR,unencrypted:edsk41EQBCoimXvtcDxzf7VDzxuGfjPRfwwnUGA6GK3XjCJrLuAExP@5_000_000", \
+"--add-bootstrap-account", "investor1,edpkv8CR4YDExCngxjcU5wYnqVy8tkFVVoXp9rCFxSPeFjfCgN2aQ5,tz1ii1iPX8HWbgms6vPCFSbgYAKmJcWZu3F8,unencrypted:edsk49QwSsWA6t77FVN3VECkngNi2gAS7SpybnSnFbnA49WGKtHpQd@5_000_000", \
+"--add-bootstrap-account", "investor2,edpkv2pbwbXBeeoCNSbmeHK51G5A6oPREpDVc3jtUkiDeR3torLdpA,tz1ii2ivhPA5TXdoQr1bU3kscexbm97a6qDy,unencrypted:edsk3MKzsQGhQuGEyLJ876KfU81kFuCi6BxnqJWZSSBGPphFAVQR7h@5_000_000", \
+"--add-bootstrap-account", "investor3,edpkvNZ5hifnW2vUK4xxZfva7zTCfTmaMy2hMUmUzNN76t15qTaUV7,tz1ii3iWF9vQVqkPDHHii13ZqtYvjayqiAzk,unencrypted:edsk4C9CEgXqZoMhGyMBchHYh3xyBffzL1TssEnAfDtLPTqBHHLwcx@5_000_000", \
+"--add-bootstrap-account", "investor4,edpkv3c64oMYW21oibWivdT4cGco9f8yr1oeKTstrT2ttRdztkYY2z,tz1ii4i4jvp2BY8nFFZ7AoWUJeLNjJaZBr9f,unencrypted:edsk4DaYcFBm514wxuHNguxjZnm5HJiaGZByomuRZz2F6Loabf4HJb@5_000_000", \
+"--add-bootstrap-account", "investor5,edpktv3WJ3DBZvoLwzQDvLCgjtSo4rPbqm8w8vTPpqoHqUYr7Lrq29,tz1ii5iJ8oNdE7osTe62TcoLRwGQbWyhuyzT,unencrypted:edsk2uhaRsHnVrtSHDb9FMrPKLHQ3qgnkVigsXwm1dLaC5V73gEhDr@5_000_000", \
+"--add-bootstrap-account", "investor6,edpkuKcA5gv59SeXDqF3GoHHq9pifhGkKiZavbmDW9jLsMZS4ma8W1,tz1ii6i4cJAV1jtXva8wzVbGZSExaTVuyovr,unencrypted:edsk4XJsn94Fw7BS2F4tn3tkKyR7YWtaeoG8VEVBB6zTf3dzWVQAKn@5_000_000", \
+"--add-bootstrap-account", "investor7,edpkudNmWEJ9aC8PpAxGHoiwx717v9iQTXx3NVh45z1d1iXXwbr7Ux,tz1ii7iJTSnhwvBGoyHVwM3eVAiz9dtAZVTY,unencrypted:edsk3LxKio6pGqdJG4uM9DZT1tsyhsDfoCR3UckNSiA7RwL6JrjSmu@5_000_000", \
+"--add-bootstrap-account", "investor8,edpku8mpf8PMKbkkcqrAmbhtNYowbmVD3Uwmch4Rkk5kceQkgERR11,tz1ii8idqqUnrPq3g6EhC47K6kUm9BnJzQFd,unencrypted:edsk3SQdimZMsVvAJAXpXRi3vpYvahhNvgLMdt4nNuVvnNf8nDdH5U@5_000_000", \
+"--add-bootstrap-account", "investor9,edpktyC6oGwGpPsTfatyGcxxuqGTZDNVWCdkRnL3g8z6DsVzH8yzbh,tz1ii9iYJJLCYFzT49N7sRV2NuiXkMbMJGZe,unencrypted:edsk2pE7t7EEXbREZPfs5bMR5JLB5ekL7PtD77jn9jFsbrBWtRNade@5_000_000", \
+"--add-bootstrap-account", "investor11,edpkuV57rSHy5gVGL6yUBD6ChFvpZpTwXocdDodzw9EggcbtBJ1voT,tz1i11ikFrBH586fayRqDnkjjUyiqLWHyKzk,unencrypted:edsk4JuWZJU8BNiatuAHBsdK6i3dDbwT78BovB8dwJ6GVk2gauyZQi@5_000_000", \
+"--add-bootstrap-account", "investor12,edpkuBMD5C1Yai3pEeYp3B8MwnK8SrcjqWQGNQ4Qnq4LGtpWSsjrX7,tz1i12ioCuGQ6hLG84rmavBeXJ9FXJFtEpBp,unencrypted:edsk33C3Kq6A92ypyQKBGLWkh3gCp113of6QdYLc9aP43G69cPfdqA@5_000_000", \
+"--add-bootstrap-account", "investor13,edpkvJvJvWSv85AcfDRWPdoJNbbT6tjMkoeku5Nm9znLghxawwrKTY,tz1i13iFWSF1bahLjHkgqgWoNYwB7T6a67vH,unencrypted:edsk3bekKBNwA379FDqYArBYugU1VeQVHBZUA7NQARLcbRTJati798@5_000_000", \
+"--add-bootstrap-account", "investor14,edpkvPZUez9P1mUiZfAPvheJtVLt4J6ck1rWSLAUxwNj2fonnrpGhH,tz1i14inFU1EG47bdTGcgTfyriur8XjZhQv1,unencrypted:edsk3UGVH89apbPsYxLniWPb2KUsScb8NBRakWv2pJqQYHWUj8g2wF@5_000_000", \
+"--add-bootstrap-account", "investor15,edpkuPr2R8AwqrUpYxpgZaKMouoAwprXy6JL5ZhavfufdduzoW3oSq,tz1i15i3ouFhEVjTVMhegvEbi8ZkNzATou99,unencrypted:edsk2y3LjbSG8rVaYXQuk6PAg2htxK5xRbvPA4G9cGRxH6teyFLuNR@5_000_000", \
+"--add-bootstrap-account", "investor16,edpkv7F95gWweDov3YDS6u3LyKCVsDKN7zdEicR3oc1apV1GBkBv9z,tz1i16itUJEoYohVY1g1KRBdKgsfEvsx5xF8,unencrypted:edsk3EtA4ycQzBacHUnGPZk1yrdiaQgG2vJTxEQnNJoBPwehPU6S8R@5_000_000", \
+"--add-bootstrap-account", "extrinsic1,edpkukHULN6bk9AdLRnnFbDodsh4SMfuKBk2trT4hPbf1N15HS1Dvw,tz1ee1eyF3wLnXLe2T9KJTwb81m4i2dxP9w5,unencrypted:edsk2kdhKtyqtN2bp7jt33Mq2BQmszo3VpovF2SXEzkZ5p4dcpoWqg@5_000_000", \
+"--add-bootstrap-account", "extrinsic2,edpkunAabpj6wH5cN1GCo3CvUBKpqxRr1GRosGAJ6ucm9zAS523JAM,tz1ee2e1VSuTxBTpo2munTrW3wftSVQCHAvB,unencrypted:edsk4CEX3ZJx3DfUcoSVwEAAxV8twZqjUdbrb67UJXPvMdVngVebJM@5_000_000", \
+"--add-bootstrap-account", "extrinsic3,edpkugi3cC4YY3dbudMyUncNVih8FQr9pwFB4eSf1DcXZ7jgVNwvKd,tz1ee3et5GTgJytjGdGWTNADP6e3dNxvxXNN,unencrypted:edsk3biXCLbhqK57iF2vjLNHBeUWdqXosYqrKW7mQ7fuVWorBVq1dc@5_000_000", \
+"--add-bootstrap-account", "extrinsic4,edpkuugKZYVptLUzMHyEKtioxJ1T2J8fimKvrUgtCKLtDECnsue9DR,tz1ee4eeTEi3Y8XXeBTuXgNUJcW51bxpKz3K,unencrypted:edsk4Bxxwfh64Y4FASdGDQEZxHCCcC5qrmCzF6BRZYE5mb9g99p5VM@5_000_000", \
+"--add-bootstrap-account", "extrinsic5,edpkur2Er5ZsajmysTBuo6x5S453PgmEigwKaAQRgtFRNhd2w9C8cf,tz1ee5etJQQsDQRHzZ12uUZSps2MC43VLKab,unencrypted:edsk3ctxVfJ55Wr13yqiDYQCYhWmh1RQWasKB88hYseZn4kcWasj7p@5_000_000", \
+"--add-bootstrap-account", "extrinsic6,edpktyuzdUVD9gDmWdCg25cseNR3DM6SeCEzbkBx5VbnBTC9emDc77,tz1ee6eTaL5VFG8sXi9EFnH1VqiyA7ERZsyY,unencrypted:edsk2zaxnXk6BPJm1ZwaNoMqmeT67CFa7VgvJScmthpLgvYCef3MtP@5_000_000", \
+"--add-bootstrap-account", "extrinsic7,edpkuV6iK9aH4yNS3kuQDgv581TJZ9qKC6ZtPNHknCM5Qac3re84FG,tz1ee7ehFzYCtJoLro3AMvktkG8AjGNtBHAw,unencrypted:edsk3ZFToyRfuemLD6Xj5FFJcfW2Nw86sx4BbDgTGWWinPJoAwB14Y@5_000_000", \
+"--add-bootstrap-account", "extrinsic8,edpkvAmf9twJDqYq6XL9B1yfNUkzHVgKnJPzvTpjWTyBET7M7JLDKk,tz1ee8eGzdPbc5Wp4aiFCU8U6FEmPFixnu9U,unencrypted:edsk3scS2Emg1RygZo2qvKmaR3GfT2NJ2tnwsCgAxnNN9e4cB2xdDV@5_000_000", \
+"--add-bootstrap-account", "extrinsic9,edpkvUiTjW8EUpXeYTFWgWFXAcAoHqcQKxaYXESz69fCLHZ9oasaBL,tz1ee9eMPj86JiQDiVN1GtdCuRnKSJF4RBVz,unencrypted:edsk4RCPucLjK1Tn8xn19nSJhjwrhTACWzroK4AguSYkzYj1jvUDQM@5_000_000", \
+"--no-daemons-for=admin", \
+"--no-daemons-for=issuer", \
+"--no-daemons-for=custodian1", \
+"--no-daemons-for=custodian2", \
+"--no-daemons-for=custodian3", \
+"--no-daemons-for=custodial1", \
+"--no-daemons-for=custodial2", \
+"--no-daemons-for=custodial3", \
+"--no-daemons-for=custodial4", \
+"--no-daemons-for=broker1", \
+"--no-daemons-for=broker2", \
+"--no-daemons-for=broker3", \
+"--no-daemons-for=broker4", \
+"--no-daemons-for=investor1", \
+"--no-daemons-for=investor2", \
+"--no-daemons-for=investor3", \
+"--no-daemons-for=investor4", \
+"--no-daemons-for=investor5", \
+"--no-daemons-for=investor6", \
+"--no-daemons-for=investor7", \
+"--no-daemons-for=investor8", \
+"--no-daemons-for=investor9", \
+"--no-daemons-for=investor11", \
+"--no-daemons-for=investor12", \
+"--no-daemons-for=investor13", \
+"--no-daemons-for=investor14", \
+"--no-daemons-for=investor15", \
+"--no-daemons-for=investor16", \
+"--no-daemons-for=extrinsic1", \
+"--no-daemons-for=extrinsic2", \
+"--no-daemons-for=extrinsic3", \
+"--no-daemons-for=extrinsic4", \
+"--no-daemons-for=extrinsic5", \
+"--no-daemons-for=extrinsic6", \
+"--no-daemons-for=extrinsic7", \
+"--no-daemons-for=extrinsic8", \
+"--no-daemons-for=extrinsic9"]
