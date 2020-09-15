@@ -17,6 +17,7 @@ ENTRYPOINT ["/usr/bin/flextesa", "mini-network", \
 "--tezos-baker", "tezos-baker-006-PsCARTHA", \
 "--tezos-endor", "tezos-endorser-006-PsCARTHA", \
 "--tezos-accus", "tezos-accuser-006-PsCARTHA", \
+"--until-level", "20_000_000", \
 "--add-bootstrap-account", "tzero,edpkuQLm1Vx8T3SR91ezgusyxeVzjpNPTSNZ6TnLnRrX7ubHyg1VML,tz1TZeroxuxJXiZen3myriSiKMNnegAahPf6,unencrypted:edsk3KYnV8tpAn2TrYrHYTr7hzSNGYfXqSSFMS7kxw7HiXsKtKsqbN@2_000_000_000_000", \
 "--add-bootstrap-account", "admin,edpku3rHyyzNXJwa1fTY21YWANnqzSPKgABhJJsMrbkxrSxoVczmD7,tz1LHPijssU514sjv4sgX8ZrwufXcXZT2cJr,unencrypted:edsk3mMotPzERuynmi3rxkp7wtXsWyp3RP2uj6ztMPB21foun8gn1b@1_000_000", \
 "--add-bootstrap-account", "issuer,edpku6dSmBCT8PtB8TwPHw8GUjkMoWJoHmmBvD2oMHTt5HKnLdCngY,tz1R3nRTHbRotdSt5TE63Xc897zjjSmxUKPU,unencrypted:edsk3uYhhK5aFCxtu8pAVGVtF1PxFWwWYvRWWinRAJeb8YHA8cRe9u@1_000_000", \

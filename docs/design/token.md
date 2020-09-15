@@ -14,7 +14,7 @@ relating to the General Corporation Law, supporting the following Title 8 requir
 - Provide a way to re-issue tokens to a new address, cancelling the current one.
 - Provide a way to recover shares by moving them to a new address, invalidating current one. (Section 167)
 
-This document walks through the LIGO code for the token contract [T0ken.mligo](../../src/contracts/T0ken.mligo) and
+This document walks through the LIGO code for the token contract [t0ken.mligo](../../src/contracts/t0ken.mligo) and
 uses "Company A Preferred Stock" as an example company that is attempting to implement security tokens for offering
 equities (in this case, Company A Preferred Stock).
 
