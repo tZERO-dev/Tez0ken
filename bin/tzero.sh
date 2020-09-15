@@ -11,14 +11,14 @@
 
 #  true - Flextesa is wrapped with a reverse-proxy, baking blocks upon transactions only
 # false - No wrapper, blocks are baked at regular intervals
-EASY_BAKE=true
+EASY_BAKE=${EASY_BAKE:-true}
 #  true - Use TzIndex-Pro, requires commercial license
 # false - Use TzIndex opensource
-TZ_INDEX_PRO=false
+TZ_INDEX_PRO=${TZ_INDEX_PRO:-false}
 
 
-DOCKER_NETWORK="tzero_tezoken"
-DOCKER_PROJECT="tzerotech"
+DOCKER_NETWORK=${DOCKER_NETWORK:-tzero_tezoken}
+DOCKER_PROJECT=${DOCKER_PROJECT:-tzerotech}
 
 BETTER_CALL_DEV_NAME="tzero_better-call-dev"
 FLEXTESA_NAME="tzero_flextesa"
@@ -154,7 +154,7 @@ compile_contract () {
 		out=$(echo "$out" \
 			| sed "s/%grantor/%from/g" \
 			| sed "s/%receiver/%to/g" \
-			| sed "s/ %yield/%callback/g" \
+			| sed "s/%yield/%callback/g" \
 		)
 		annotations=" - renamed fa1.2 annotations"
 	elif [ "$filename" = "registry.mligo" ]; then
