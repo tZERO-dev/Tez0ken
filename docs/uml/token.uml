@@ -31,6 +31,7 @@ skinparam component {
 	fontSize 14
 }
 hide empty methods
+set namespaceSeparator none
 ' ##################################################
 
 interface "FA1.2" << (I,white) >> {
